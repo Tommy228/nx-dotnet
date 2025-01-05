@@ -5,9 +5,7 @@
       "plugin": "@nx-dotnet/core",
       "options": {
         "inferProjects": false,
-        "nugetPackages": {
-          "Swashbuckle.AspNetCore": "6.5.0"
-        }
+        "nugetPackages": { "Swashbuckle.AspNetCore": "6.5.0" }
       }
     }
   ],
@@ -17,15 +15,11 @@
       "inputs": [
         "production",
         "^production",
-        {
-          "env": "NX_DOTNET_NEXT_VERSION"
-        }
+        { "env": "NX_DOTNET_NEXT_VERSION" }
       ],
       "cache": true
     },
-    "test": {
-      "cache": true
-    },
+    "test": { "cache": true },
     "@nx-dotnet/core:build": {
       "dependsOn": ["^build", "prebuild", "^prebuild", "^codegen", "codegen"],
       "inputs": [
@@ -35,14 +29,8 @@
         "{workspaceRoot}/Directory.Build.targets"
       ]
     },
-    "codegen": {
-      "dependsOn": ["^swagger", "swagger"],
-      "cache": true
-    },
-    "swagger": {
-      "dependsOn": ["build"],
-      "cache": true
-    },
+    "codegen": { "dependsOn": ["^swagger", "swagger"], "cache": true },
+    "swagger": { "dependsOn": ["build"], "cache": true },
     "lint": {
       "inputs": [
         "default",
@@ -56,31 +44,18 @@
       "cache": true,
       "dependsOn": ["^prebuild"]
     },
-    "build:test": {
-      "cache": true
-    },
+    "build:test": { "cache": true },
     "@nx/jest:jest": {
       "cache": true,
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
+      "options": { "passWithNoTests": true },
+      "configurations": { "ci": { "ci": true, "codeCoverage": true } }
     },
     "@nx/eslint:lint": {
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
       "cache": true
     },
-    "nx-release-publish": {
-      "options": {
-        "packageRoot": "dist/{projectRoot}"
-      }
-    }
+    "nx-release-publish": { "options": { "packageRoot": "dist/{projectRoot}" } }
   },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals", "projectSpecificFiles"],
@@ -89,9 +64,7 @@
       "{workspaceRoot}/tslint.json",
       "{workspaceRoot}/nx.json",
       "{workspaceRoot}/babel.config.json",
-      {
-        "runtime": "node -p '`${process.platform} ${process.arch}`'"
-      }
+      { "runtime": "node -p '`${process.platform} ${process.arch}`'" }
     ],
     "production": [
       "default",
@@ -113,12 +86,8 @@
     "version": {
       "preVersionCommand": "yarn nx run-many -t build --exclude demo-*",
       "conventionalCommits": true,
-      "generatorOptions": {
-        "packageRoot": "dist/{projectRoot}"
-      },
-      "git": {
-        "commitMessage": "chore(repo): release {version} [skip ci]"
-      }
+      "generatorOptions": { "packageRoot": "dist/{projectRoot}" },
+      "git": { "commitMessage": "chore(repo): release {version} [skip ci]" }
     },
     "changelog": {
       "workspaceChangelog": {
@@ -126,5 +95,6 @@
         "renderer": "@nx-dotnet/workspace-plugin/changelog-renderer"
       }
     }
-  }
+  },
+  "nxCloudId": "677aee092f196d703cd465e9"
 }
