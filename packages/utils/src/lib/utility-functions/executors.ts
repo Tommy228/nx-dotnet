@@ -12,16 +12,14 @@ export const getExecutedProjectConfiguration = (context: ExecutorContext) => {
   }
   if (
     !context.projectGraph &&
-    !context.workspace &&
     !context.projectsConfigurations
   ) {
     throw new Error(
-      '@nx-dotnet was unable to locate your projects configurations. ExecutorContext should contain projectGraph | workspace | projectsConfigurations',
+      '@nx-dotnet was unable to locate your projects configurations. ExecutorContext should contain projectGraph | projectsConfigurations',
     );
   }
   const possibleConfigurations: ProjectConfiguration[] = [
     context.projectsConfigurations?.projects[context.projectName],
-    context.workspace?.projects[context.projectName],
     context.projectGraph?.nodes[context.projectName].data,
   ].filter((x) => !!x) as ProjectConfiguration[];
 

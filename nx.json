@@ -17,7 +17,9 @@
       "inputs": [
         "production",
         "^production",
-        { "env": "NX_DOTNET_NEXT_VERSION" }
+        {
+          "env": "NX_DOTNET_NEXT_VERSION"
+        }
       ],
       "cache": true
     },
