@@ -443,6 +443,11 @@ public class UnitTest1
   });
 
   describe('swagger integration', () => {
+    beforeEach(() => {
+      // delete dotnet tools manifest to ensure not conflicting with the repo's manifest
+      runCommand('rm -f .config/dotnet-tools.json', {});
+    });
+
     it('should generate swagger project for webapi', async () => {
       const api = uniq('api');
       await runNxCommandAsync(

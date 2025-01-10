@@ -1,5 +1,8 @@
 name: Run CI checks
 
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
